@@ -30,7 +30,14 @@ std::vector<float> solveFunction(std::vector<float> arguments, float (*f)(float)
 
 std::vector<float> fillVector(float startT, float endT, float deltaT)
 {
-
+	std::vector<float> range;
+	auto t = startT;
+	while (t <= endT)
+	{
+		range.push_back(t);
+		t += deltaT;
+	}
+	return range;
 }
 
 void saveResult(std::vector<float> arguments, std::vector<float> results, std::string filename)
