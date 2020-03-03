@@ -25,7 +25,10 @@ void solveSquareEquation(float a, float b, float c)
 
 std::vector<float> solveFunction(std::vector<float> arguments, float (*f)(float))
 {
-
+	std::vector<float> results;
+	for (auto argument : arguments)
+		results.push_back(f(argument));
+	return results;
 }
 
 std::vector<float> fillVector(float startT, float endT, float deltaT)
