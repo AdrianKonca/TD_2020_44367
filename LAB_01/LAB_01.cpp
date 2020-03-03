@@ -23,11 +23,11 @@ void solveSquareEquation(float a, float b, float c)
 		std::cout << "There are two roots. x1 = " << ((-b - sqrt(discriminant)) / 2 * a) << " x2 = " << ((-b + sqrt(discriminant)) / 2 * a);
 }
 
-std::vector<float> solveFunction(std::vector<float> arguments, float (*f)(float))
+std::vector<float> solveFunction(std::vector<float> arguments, float (*function)(float))
 {
 	std::vector<float> results;
 	for (auto argument : arguments)
-		results.push_back(f(argument));
+		results.push_back(function(argument));
 	return results;
 }
 
