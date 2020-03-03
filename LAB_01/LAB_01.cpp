@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 const float A = 7;
 const float B = 6;
@@ -20,6 +21,21 @@ void solveSquareEquation(float a, float b, float c)
 		std::cout << "There is only one root. x = " << (-b / 2 * a);
 	else
 		std::cout << "There are two roots. x1 = " << ((-b - sqrt(discriminant)) / 2 * a) << " x2 = " << ((-b + sqrt(discriminant)) / 2 * a);
+}
+
+std::vector<float> solveFunction(std::vector<float> arguments, float (*f)(float))
+{
+
+}
+
+std::vector<float> fillVector(float startT, float endT, float deltaT)
+{
+
+}
+
+void saveResult(std::vector<float> arguments, std::vector<float> results, std::string filename)
+{
+
 }
 
 void taskOne(float startT, float endT, float deltaT)
