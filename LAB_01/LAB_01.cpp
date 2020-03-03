@@ -6,6 +6,10 @@ const float C = 3;
 const float D = 4;
 const float E = 4;
 
+float x(float t)
+{
+	return A * t * t + B * t + C;
+}
 
 void taskOne(float startT, float endT, float deltaT)
 {
