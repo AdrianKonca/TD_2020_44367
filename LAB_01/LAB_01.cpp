@@ -46,7 +46,7 @@ std::vector<double> fillVector(double startT, double endT, double deltaT)
 
 void saveResult(std::vector<double> arguments, std::vector<double> results, std::string filename)
 {
-	std::ofstream file(filename);
+	std::ofstream file("Outputs/"+ filename);
 	file << "x, y\n";
 	for (auto i = 0; i < arguments.size(); i++)
 	{
