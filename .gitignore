@@ -6,6 +6,7 @@
 # Not required for laboratories
 *.sln
 *.vcxproj*
+*.csv
 
 # User-specific files
 *.rsuser
