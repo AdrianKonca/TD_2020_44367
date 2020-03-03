@@ -13,7 +13,7 @@ float x(float t)
 
 void solveSquareEquation(float a, float b, float c)
 {
-	float discriminant = b * b - 4 * a * c;
+	auto discriminant = b * b - 4 * a * c;
 	if (discriminant < 0)
 		std::cout << "There are no roots.";
 	else if (discriminant == 0)
