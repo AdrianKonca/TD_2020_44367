@@ -46,7 +46,14 @@ std::vector<double> fillVector(double startT, double endT, double deltaT)
 
 void saveResult(std::vector<double> arguments, std::vector<double> results, std::string filename)
 {
-
+	std::ofstream file(filename);
+	file << "x, y\n";
+	for (auto i = 0; i < arguments.size(); i++)
+	{
+		file << arguments.at(i) << ", " << results.at(i) << "\n";
+	}
+	file.flush();
+	file.close();
 }
 
 void taskOne(double startT, double endT, double deltaT)
@@ -62,5 +69,5 @@ void taskTwo(double startT, double endT, double deltaT)
 int main()
 {
 	taskOne(-10, 10, 1.0 / 100.0);
-	taskTwo(-1, 1, 1,0 / 22050.0);
+	taskTwo(-1, 1, 1.0 / 22050.0);
 }
