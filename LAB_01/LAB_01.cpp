@@ -11,9 +11,20 @@ float x(float t)
 	return A * t * t + B * t + C;
 }
 
+void solveSquareEquation(float a, float b, float c)
+{
+	float discriminant = b * b - 4 * a * c;
+	if (discriminant < 0)
+		std::cout << "There are no roots.";
+	else if (discriminant == 0)
+		std::cout << "There is only one root. x = " << (-b / 2 * a);
+	else
+		std::cout << "There are two roots. x1 = " << ((-b - sqrt(discriminant)) / 2 * a) << " x2 = " << ((-b + sqrt(discriminant)) / 2 * a);
+}
+
 void taskOne(float startT, float endT, float deltaT)
 {
-
+	solveSquareEquation(A, B, C);
 }
 
 void taskTwo(float startT, float endT, float deltaT)
