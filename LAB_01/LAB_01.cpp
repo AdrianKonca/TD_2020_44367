@@ -50,7 +50,7 @@ void saveResult(std::vector<double> arguments, std::vector<double> results, std:
 	file << "x, y\n";
 	for (auto i = 0; i < arguments.size(); i++)
 	{
-		file << arguments.at(i) << ", " << results.at(i) << "\n";
+		file << arguments.at(i) << "," << results.at(i) << "\n";
 	}
 	file.flush();
 	file.close();
@@ -59,6 +59,9 @@ void saveResult(std::vector<double> arguments, std::vector<double> results, std:
 void taskOne(double startT, double endT, double deltaT)
 {
 	solveSquareEquation(A, B, C);
+	auto arguments = fillVector(startT, endT, deltaT);
+	auto results = solveFunction(arguments, x);
+	saveResult(arguments, results, "x.csv");
 }
 
 void taskTwo(double startT, double endT, double deltaT)
