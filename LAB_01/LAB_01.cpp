@@ -17,7 +17,7 @@ double x(double t)
 
 double y(double t)
 {
-	return 2 * x(t) * x(t) * 12 * cos(t);
+	return 2 * x(t) * x(t) + 12 * cos(t);
 }
 
 double z(double t)
