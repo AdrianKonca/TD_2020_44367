@@ -130,8 +130,14 @@ void taskTwo(double startT, double endT, double deltaT)
 	results = solveFunction(arguments, v);
 	saveResult(arguments, results, "v.csv");
 
-	//results = solveFunction(arguments, p);
-	//saveResult(arguments, results, "p.csv");
+	results = solveFunction(arguments, p2);
+	saveResult(arguments, results, "p2.csv");
+
+	results = solveFunction(arguments, p4);
+	saveResult(arguments, results, "p4.csv");
+
+	results = solveFunction(arguments, pAB);
+	saveResult(arguments, results, "pAB.csv");
 }
 
 int main()
