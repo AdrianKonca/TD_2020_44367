@@ -40,6 +40,29 @@ double v(double t)
 		return pow(t, -0.662) + 0.77 * sin(8 * t);
 }
 
+double p(double t, double N)
+{
+	double sum = 0;
+	for (auto n = 1; n <= N; n++)
+		sum += (cos(12 * t * n * n) + cos(16 * t * n)) / (n * n);
+	return sum;
+}
+
+double p2(double t)
+{
+	return p(t, 2);
+}
+
+double p4(double t)
+{
+	return p(t, 4);
+}
+
+double pAB(double t)
+{
+	return p(t, A * 10 + B);
+}
+
 void solveSquareEquation(double a, double b, double c)
 {
 	auto discriminant = b * b - 4 * a * c;
