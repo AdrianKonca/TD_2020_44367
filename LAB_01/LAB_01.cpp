@@ -143,5 +143,5 @@ void taskTwo(double startT, double endT, double deltaT)
 int main()
 {
 	taskOne(-10, 10, 1.0 / 100.0);
-	taskTwo(-1, 1, 1.0 / 22050.0);
+	taskTwo(0, 1, 1.0 / 22050.0);
 }
