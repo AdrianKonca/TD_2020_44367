@@ -13,6 +13,11 @@ double x(double t)
 	return A * t * t + B * t + C;
 }
 
+double y(double t)
+{
+	return 2 * x(t) * x(t) * 12 * cos(t);
+}
+
 void solveSquareEquation(double a, double b, double c)
 {
 	auto discriminant = b * b - 4 * a * c;
