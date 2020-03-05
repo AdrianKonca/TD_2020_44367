@@ -2,6 +2,8 @@
 #include <fstream>
 #include <vector>
 
+#define PI 3.14159265358979323846
+
 const double A = 7;
 const double B = 6;
 const double C = 3;
@@ -16,6 +18,11 @@ double x(double t)
 double y(double t)
 {
 	return 2 * x(t) * x(t) * 12 * cos(t);
+}
+
+double z(double t)
+{
+	return sin(2 * PI * 7 * t) * x(t) - 0.2 * log10(abs(y(t)) + PI);
 }
 
 void solveSquareEquation(double a, double b, double c)
