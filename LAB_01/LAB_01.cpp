@@ -30,6 +30,16 @@ double u(double t)
 	return sqrt(abs(y(t) * y(t) * z(t))) - 1.8 * sin(0.4 * t * z(t) * x(t));
 }
 
+double v(double t)
+{
+	if (t < 0.22)
+		return (1 - 7 * t) * sin((2 * PI * t * 10) / (t + 0.04));
+	else if (t < 0.7)
+		return 0.63 * t * sin(125 * t);
+	else
+		return pow(t, -0.662) + 0.77 * sin(8 * t);
+}
+
 void solveSquareEquation(double a, double b, double c)
 {
 	auto discriminant = b * b - 4 * a * c;
