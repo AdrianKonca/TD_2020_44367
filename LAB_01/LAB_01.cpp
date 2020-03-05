@@ -25,6 +25,11 @@ double z(double t)
 	return sin(2 * PI * 7 * t) * x(t) - 0.2 * log10(abs(y(t)) + PI);
 }
 
+double u(double t)
+{
+	return sqrt(abs(y(t) * y(t) * z(t))) - 1.8 * sin(0.4 * t * z(t) * x(t));
+}
+
 void solveSquareEquation(double a, double b, double c)
 {
 	auto discriminant = b * b - 4 * a * c;
