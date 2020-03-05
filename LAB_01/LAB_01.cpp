@@ -93,7 +93,22 @@ void taskOne(double startT, double endT, double deltaT)
 
 void taskTwo(double startT, double endT, double deltaT)
 {
+	auto arguments = fillVector(startT, endT, deltaT);
 
+	auto results = solveFunction(arguments, y);
+	saveResult(arguments, results, "y.csv");
+
+	results = solveFunction(arguments, z);
+	saveResult(arguments, results, "z.csv");
+
+	results = solveFunction(arguments, u);
+	saveResult(arguments, results, "u.csv");
+
+	results = solveFunction(arguments, v);
+	saveResult(arguments, results, "v.csv");
+
+	//results = solveFunction(arguments, p);
+	//saveResult(arguments, results, "p.csv");
 }
 
 int main()
