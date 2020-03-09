@@ -37,6 +37,18 @@ std::vector<double> fillVector(double startT, double endT, double deltaT)
 	return range;
 }
 
+void saveResult(std::vector<double> arguments, std::vector<double> results, std::string filename)
+{
+	std::ofstream file("Outputs/" + filename);
+	file << "t, y\n";
+	for (auto i = 0; i < arguments.size(); i++)
+	{
+		file << arguments.at(i) << "," << results.at(i) << "\n";
+	}
+	file.flush();
+	file.close();
+}
+
 int main()
 {
     std::cout << "Hello World!\n";
