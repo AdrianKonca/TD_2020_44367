@@ -17,6 +17,14 @@ double s(double t)
     return A * sin(2 * PI * F * t + PHI);
 }
 
+std::vector<double> solveFunction(std::vector<double> arguments, double (*function)(double))
+{
+	std::vector<double> results;
+	for (auto argument : arguments)
+		results.push_back(function(argument));
+	return results;
+}
+
 std::vector<double> fillVector(double startT, double endT, double deltaT)
 {
 	std::vector<double> range;
