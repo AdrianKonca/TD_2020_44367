@@ -59,5 +59,5 @@ int main()
 	
 	auto arguments = fillVector(startT, stopT, deltaT);
 	auto results = solveFunction(arguments, s);
-	saveResult(arguments, results, "s.csv")
+	saveResult(arguments, results, "s.csv");
 }
