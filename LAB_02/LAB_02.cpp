@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 
 #define PI 3.14159265358979323846
@@ -51,5 +52,12 @@ void saveResult(std::vector<double> arguments, std::vector<double> results, std:
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	double startT = 0;
+	double stopT = A;
+	double deltaT = 0.01;
+	double fs = 1 / deltaT;
+	
+	auto arguments = fillVector(startT, stopT, deltaT);
+	auto results = solveFunction(arguments, s);
+	saveResult(arguments, results, "s.csv")
 }
