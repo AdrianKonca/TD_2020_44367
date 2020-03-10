@@ -78,14 +78,31 @@ void saveResult(std::vector<double> arguments, std::vector<int> results, std::st
 	file.close();
 }
 
-int main()
+void fullPrecision(double startT, double endT, double deltaT, int q)
 {
-	double startT = 0;
-	double stopT = A;
-	double deltaT = 0.01;
-	double fs = 1 / deltaT;
-	
-	auto arguments = fillVector(startT, stopT, deltaT);
+	auto arguments = fillVector(startT, endT, deltaT);
 	auto results = solveFunction(arguments, s);
 	saveResult(arguments, results, "s.csv");
+	auto quantized = QuantizyRange(results, 2 << (q - 1));
+	saveResult(arguments, quantized, "sQuantized.csv");
+}
+
+void halfPrecision(double startT, double endT, double deltaT, int q)
+{
+	auto arguments = fillVector(startT, endT, deltaT * 2);
+	auto results = solveFunction(arguments, s);
+	auto quantized = QuantizyRange(results, 2 << (q - 1));
+	saveResult(arguments, quantized, "sQuantizedHalf.csv");
+}
+
+int main()
+{
+	const int q = 16;
+	double startT = 0.0;
+	double stopT = A;
+	const double fs = 1000.0;
+	double deltaT = 1.0 / fs;
+	
+	fullPrecision(startT, stopT, deltaT, q);
+	halfPrecision(startT, stopT, deltaT, q / 2);
 }
