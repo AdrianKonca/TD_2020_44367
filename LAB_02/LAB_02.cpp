@@ -44,16 +44,6 @@ int Quantization(double value, double maxValue)
 	return round((value + AMPLITUDE) * (maxValue - 1) / 2);
 }
 
-std::vector<int> QuantizyRange(std::vector<double> values, int maxValue)
-{
-	std::vector<int> quantizedRange;
-	for (auto i = 0; i < values.size(); i++)
-	{
-		quantizedRange.push_back(Quantization(values.at(i), maxValue));
-	}
-	return quantizedRange;
-}
-
 void saveResult(std::vector<double> arguments, std::vector<double> results, std::string filename)
 {
 	std::ofstream file("Outputs/" + filename);
@@ -66,43 +56,14 @@ void saveResult(std::vector<double> arguments, std::vector<double> results, std:
 	file.close();
 }
 
-void saveResult(std::vector<double> arguments, std::vector<int> results, std::string filename)
-{
-	std::ofstream file("Outputs/" + filename);
-	file << "t, y\n";
-	for (auto i = 0; i < arguments.size(); i++)
-	{
-		file << arguments.at(i) << "," << results.at(i) << "\n";
-	}
-	file.flush();
-	file.close();
-}
-
-void fullPrecision(double startT, double endT, double deltaT, int q)
-{
-	auto arguments = fillVector(startT, endT, deltaT);
-	auto results = solveFunction(arguments, s);
-	saveResult(arguments, results, "s.csv");
-	auto quantized = QuantizyRange(results, 2 << (q - 1));
-	saveResult(arguments, quantized, "sQuantized.csv");
-}
-
-void halfPrecision(double startT, double endT, double deltaT, int q)
-{
-	auto arguments = fillVector(startT, endT, deltaT * 2);
-	auto results = solveFunction(arguments, s);
-	auto quantized = QuantizyRange(results, 2 << (q - 1));
-	saveResult(arguments, quantized, "sQuantizedHalf.csv");
-}
-
 int main()
 {
-	const int q = 16;
-	double startT = 0.0;
+	double startT = 0;
 	double stopT = A;
-	const double fs = 1000.0;
-	double deltaT = 1.0 / fs;
+	double deltaT = 0.01;
+	double fs = 1 / deltaT;
 	
-	fullPrecision(startT, stopT, deltaT, q);
-	halfPrecision(startT, stopT, deltaT, q / 2);
+	auto arguments = fillVector(startT, stopT, deltaT);
+	auto results = solveFunction(arguments, s);
+	saveResult(arguments, results, "s.csv");
 }
