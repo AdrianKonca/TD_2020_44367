@@ -39,6 +39,11 @@ std::vector<double> fillVector(double startT, double endT, double deltaT)
 	return range;
 }
 
+int Quantization(double value, double maxValue)
+{
+	return round((value + AMPLITUDE) * (maxValue - 1) / 2);
+}
+
 void saveResult(std::vector<double> arguments, std::vector<double> results, std::string filename)
 {
 	std::ofstream file("Outputs/" + filename);
