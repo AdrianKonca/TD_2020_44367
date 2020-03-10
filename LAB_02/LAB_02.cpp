@@ -10,12 +10,13 @@ const double C = 3;
 const double D = 4;
 const double E = 4;
 
+const double AMPLITUDE = 1.0;
+
 double s(double t)
 {
-    const double A = 1.0;
     const double F = B;
     const double PHI = C * PI;
-    return A * sin(2 * PI * F * t + PHI);
+    return AMPLITUDE * sin(2 * PI * F * t + PHI);
 }
 
 std::vector<double> solveFunction(std::vector<double> arguments, double (*function)(double))
