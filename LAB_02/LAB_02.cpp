@@ -44,6 +44,16 @@ int Quantization(double value, double maxValue)
 	return round((value + AMPLITUDE) * (maxValue - 1) / 2);
 }
 
+std::vector<int> QuantizyRange(std::vector<double> values, int maxValue)
+{
+	std::vector<int> quantizedRange;
+	for (auto i = 0; i < values.size(); i++)
+	{
+		quantizedRange.push_back(Quantization(values.at(i), maxValue));
+	}
+	return quantizedRange;
+}
+
 void saveResult(std::vector<double> arguments, std::vector<double> results, std::string filename)
 {
 	std::ofstream file("Outputs/" + filename);
