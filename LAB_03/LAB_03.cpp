@@ -110,6 +110,21 @@ std::vector<std::complex<double>> discreteFourierTransformation(std::vector <dou
 	return transformedSamples;
 }
 
+std::vector <double> invertedDiscreteFourierTransformation(std::vector<std::complex<double>> transformedSamples)
+{
+	int SAMPLES_COUNT = transformedSamples.size();
+	std::complex<double> J(0, 1);
+	std::vector<double> samples(SAMPLES_COUNT);
+	for (auto i = 0; i < SAMPLES_COUNT; ++i)
+	{
+		samples[i] = 0;
+		for (auto j = 0; j < SAMPLES_COUNT; ++j)
+			samples[i] += (transformedSamples[j] * exp(J * PI * 2.0 * (double)i * (double)j / (double)SAMPLES_COUNT)).real();
+		samples[i] /= (double)SAMPLES_COUNT;
+	}
+	return samples;
+}
+
 int main()
 {
 	const int q = 16;
