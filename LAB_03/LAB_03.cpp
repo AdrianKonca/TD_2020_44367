@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <complex>
 
 #define PI 3.14159265358979323846
 
@@ -11,12 +12,12 @@ const double D = 4;
 const double E = 4;
 
 const double AMPLITUDE = 1.0;
+const double FREQUENCY = B;
+const double PHASE_ANGLE = C * PI;
 
 double s(double t)
 {
-	const double F = B;
-	const double PHI = C * PI;
-	return AMPLITUDE * sin(2 * PI * F * t + PHI);
+	return AMPLITUDE * sin(2 * PI * FREQUENCY * t + PHASE_ANGLE);
 }
 
 std::vector<double> solveFunction(std::vector<double> arguments, double (*function)(double))
@@ -93,6 +94,11 @@ void halfPrecision(double startT, double endT, double deltaT, int q)
 	auto results = solveFunction(arguments, s);
 	auto quantized = QuantizyRange(results, 2 << (q - 1));
 	saveResult(arguments, quantized, "sQuantizedHalf.csv");
+}
+
+std::vector<std::complex<double>> discreteFourierTransformation(std::vector <double> samples)
+{
+
 }
 
 int main()
