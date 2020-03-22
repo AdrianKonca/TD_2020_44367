@@ -98,8 +98,11 @@ std::vector<double> amplitudeSpectrumTransformation(std::vector<std::complex<dou
 	return amplitudes;
 }
 
-void secondTask(const double STARTING_T, const double SAMPLING_FREQENCY, const double DELTA_T)
+void secondTask()
 {
+	const double STARTING_T = 0.0;
+	const double SAMPLING_FREQENCY = 1000.0;
+	const double DELTA_T = 1.0 / SAMPLING_FREQENCY;
 	const double FINISHING_T = A * 100 + B * 10 + C;
 }
 
@@ -110,7 +113,6 @@ void thirdTask()
 
 int main()
 {
-	const double STARTING_T = 0.0;
-	const double SAMPLING_FREQENCY = 1000.0;
-	const double DELTA_T = 1.0 / SAMPLING_FREQENCY;
+	secondTask();
+	thirdTask();
 }
