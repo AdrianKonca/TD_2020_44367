@@ -133,6 +133,14 @@ std::vector <double> invertedDiscreteFourierTransformation(std::vector<std::comp
 	return samples;
 }
 
+std::vector<double> amplitudeSpectrumTransformation(std::vector<std::complex<double>> transformedSamples)
+{
+	std::vector<double> amplitudes(transformedSamples.size());
+	for (auto i = 0; i < transformedSamples.size(); ++i)
+		amplitudes[i] = abs(transformedSamples[i]);
+	return amplitudes;
+}
+
 int main()
 {
 	const int q = 16;
