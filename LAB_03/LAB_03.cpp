@@ -110,6 +110,14 @@ std::vector<std::complex<double>> discreteFourierTransformation(std::vector <dou
 	return transformedSamples;
 }
 
+std::vector<double> frequencyScaleCalculator(double samplingFrequency, int samplesCount)
+{
+	std::vector<double> frequencies(samplesCount);
+	for (auto i = 0; i < samplesCount; ++i)
+		frequencies[i] = (double)i * samplingFrequency / (double)samplesCount;
+	return frequencies;
+}
+
 std::vector <double> invertedDiscreteFourierTransformation(std::vector<std::complex<double>> transformedSamples)
 {
 	int SAMPLES_COUNT = transformedSamples.size();
