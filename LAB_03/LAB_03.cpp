@@ -99,13 +99,13 @@ void halfPrecision(double startT, double endT, double deltaT, int q)
 std::vector<std::complex<double>> discreteFourierTransformation(std::vector <double> samples)
 {
 	std::complex<double> J(0, 1);
-	int SAMPLES_COUNT = samples.size();
-	std::vector<std::complex<double>> transformedSamples(SAMPLES_COUNT);
-	for (auto i = 0; i < SAMPLES_COUNT; ++i)
+	int samplesCount = samples.size();
+	std::vector<std::complex<double>> transformedSamples(samplesCount);
+	for (auto i = 0; i < samplesCount; ++i)
 	{
 		transformedSamples[i] = std::complex<double>(0, 0);
-		for (auto j = 0; j < SAMPLES_COUNT; ++j)
-			transformedSamples[i] += samples[j] * exp(J * -PI * 2.0 * (double)i * (double)j / (double)SAMPLES_COUNT);
+		for (auto j = 0; j < samplesCount; ++j)
+			transformedSamples[i] += samples[j] * exp(J * -PI * 2.0 * (double)i * (double)j / (double)samplesCount);
 	}
 	return transformedSamples;
 }
