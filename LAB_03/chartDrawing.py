@@ -23,7 +23,7 @@ def convertToDecibelScale(amplitudes):
     return amplitudesAsDecibels
 
 def drawPlot(functionName, title, filename):
-    t, y = np.loadtxt('Outputs/' + filename + '.csv', delimiter=',', unpack=True, skiprows = 1)
+    t, y = loadFile(filename)
     plt.scatter(t, y, 1, color='tab:blue')
     plt.title('Plot of ' + title)
     plt.xlabel('t')
