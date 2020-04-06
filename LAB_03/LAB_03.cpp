@@ -180,7 +180,7 @@ void secondAndFourthTask()
 void thirdSubTask(std::string filename)
 {
 	const double SAMPLE_COUNT = A * 100 + B * 10 + C;
-	const double SAMPLING_FREQENCY = 22050 / SAMPLE_COUNT;
+	const double SAMPLING_FREQENCY = 22050;
 	auto values = getEveryNthSample(readInputFile(filename + ".csv"), SAMPLE_COUNT);
 	auto tValues = getTValuesColumn(values);
 	auto yValues = getYValuesColumn(values);
