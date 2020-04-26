@@ -11,6 +11,16 @@ def stringToBinaryStream(text, littleEndian = False):
         return binaryStream[::-1]
     return binaryStream
 
+#recreates tile function from numpy
+def tile(value, count):
+    return [value for _ in range(count)]
+
+#recreates numpy linspace
+def linspace(low, high, stepCount):
+    step = (high - low) / (stepCount - 1)
+    values = [low + step * i for i in range(stepCount)]
+    return values
+
 AMPLITUDE_LOW = 0
 AMPLITUDE_HIGH = 1
 PHASE_LOW = 0
@@ -50,12 +60,6 @@ def phaseShiftKeying(samples, time):
     for s, t in zip(samples, time):
         pskSamples.append(math.sin(2 * math.pi * FREQUENCY * t + PHASES[s]))
     return pskSamples
-
-#recreates numpy linspace
-def linspace(low, high, stepCount):
-    step = (high - low) / (stepCount - 1)
-    values = [low + step * i for i in range(stepCount)]
-    return values
         
 def informationSignal(secondsPerBit, bits, samplesPerBit):
     time = linspace(0, secondsPerBit * len(bits), samplesPerBit * len(bits))
@@ -150,10 +154,6 @@ def taskFSK(time, informationSamples, informationSamplesTrueOnly, informationSam
 
     plt.subplot(5, 1, 5)
     drawPlot(time, demodulatedInformationSamples, "Demodulated signal m(t); H = " + str(COMPARATOR_THRESHOLD), "m(t)")
-
-#recreates tile function from numpy
-def tile(value, count):
-    return [value for _ in range(count)]
 
 def task():
     FREQUENCY_MULTIPLIER = 1
