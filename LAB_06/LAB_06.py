@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import numpy as np
+import math as math
 
 def stringToBinaryStream(text, littleEndian = False):
     binaryStream = []
@@ -14,7 +14,7 @@ def stringToBinaryStream(text, littleEndian = False):
 AMPLITUDE_LOW = 0
 AMPLITUDE_HIGH = 1
 PHASE_LOW = 0
-PHASE_HIGH = np.pi
+PHASE_HIGH = math.pi
 SECONDS_PER_BIT = 0.1
 FREQUENCY = 0
 SAMPLES_PER_BIT = 400
@@ -34,29 +34,35 @@ def amplitudeShiftKeying(samples, time):
     AMPLITUDES = {False: AMPLITUDE_LOW, True: AMPLITUDE_HIGH}
     askSamples = []
     for s, t in zip(samples, time):
-        askSamples.append(AMPLITUDES[s] * np.sin(2 * np.pi * FREQUENCY * t))
+        askSamples.append(AMPLITUDES[s] * math.sin(2 * math.pi * FREQUENCY * t))
     return askSamples
         
 def frequencyShiftKeying(samples, time):
     FREQUENCIES = {False: FREQUENCY_LOW, True: FREQUENCY_HIGH}
     fskSamples = []
     for s, t in zip(samples, time):
-        fskSamples.append(np.sin(2 * np.pi * FREQUENCIES[s] * t))
+        fskSamples.append(math.sin(2 * math.pi * FREQUENCIES[s] * t))
     return fskSamples
 
 def phaseShiftKeying(samples, time):
     PHASES = {False: PHASE_LOW, True: PHASE_HIGH}
     pskSamples = []
     for s, t in zip(samples, time):
-        pskSamples.append(np.sin(2 * np.pi * FREQUENCY * t + PHASES[s]))
+        pskSamples.append(math.sin(2 * math.pi * FREQUENCY * t + PHASES[s]))
     return pskSamples
 
+#recreates numpy linspace
+def linspace(low, high, stepCount):
+    step = (high - low) / (stepCount - 1)
+    values = [low + step * i for i in range(stepCount)]
+    return values
+        
 def informationSignal(secondsPerBit, bits, samplesPerBit):
-    time = np.linspace(0, secondsPerBit * len(bits), samplesPerBit * len(bits))
+    time = linspace(0, secondsPerBit * len(bits), samplesPerBit * len(bits))
 
-    signalSamples = np.empty(samplesPerBit * len(bits), dtype = np.bool_)
+    signalSamples = samplesPerBit * len(bits) * [None]
     for i, bit in enumerate(bits):
-        signalSamples[i * samplesPerBit:(i + 1) * samplesPerBit] = np.tile(bit, samplesPerBit)
+        signalSamples[i * samplesPerBit:(i + 1) * samplesPerBit] = tile(bit, samplesPerBit)
     return time, signalSamples
 
 def drawShiftKeyingPlot(time, samples, keyingSamples, keyingType):
@@ -145,6 +151,10 @@ def taskFSK(time, informationSamples, informationSamplesTrueOnly, informationSam
     plt.subplot(5, 1, 5)
     drawPlot(time, demodulatedInformationSamples, "Demodulated signal m(t); H = " + str(COMPARATOR_THRESHOLD), "m(t)")
 
+#recreates tile function from numpy
+def tile(value, count):
+    return [value for _ in range(count)]
+
 def task():
     FREQUENCY_MULTIPLIER = 1
     recalculateFrequencyConstants(FREQUENCY_MULTIPLIER)
@@ -152,8 +162,8 @@ def task():
 
     bits = stringToBinaryStream("Tak")
     time, informationSamples = informationSignal(SECONDS_PER_BIT, bits, SAMPLES_PER_BIT)
-    _, informationSamplesTrueOnly = informationSignal(SECONDS_PER_BIT, np.tile(1, len(bits)), SAMPLES_PER_BIT)
-    _, informationSamplesFalseOnly = informationSignal(SECONDS_PER_BIT, np.tile(0, len(bits)), SAMPLES_PER_BIT)
+    _, informationSamplesTrueOnly = informationSignal(SECONDS_PER_BIT, tile(1, len(bits)), SAMPLES_PER_BIT)
+    _, informationSamplesFalseOnly = informationSignal(SECONDS_PER_BIT, tile(0, len(bits)), SAMPLES_PER_BIT)
 
     plt.figure(figsize = (16, 9))
     taskASKandPSK(time, informationSamples, informationSamplesTrueOnly, amplitudeShiftKeying, "Amplitude")
