@@ -1,10 +1,3 @@
-import matplotlib.pyplot as plt
-import math as math
-from math import ceil
-import hamming as h
-from bitarray import bitarray
-from itertools import permutations
-
 def stringToBinaryStream(text, littleEndian = False):
     binaryStream = []
     for character in (text):
@@ -214,4 +207,4 @@ takBits = stringToBinaryStream('Tak')
 task(takBits)
 #Generalnie implementowałem na podstawie wikipedii, oraz kodu znaiezionego tutaj https://github.com/dominiccarrano/hamming
 #Stąd moja macierz którą generuje ósmy bit różni się od Pana.
-
+#Działa, ale nie wykonuje kroku z próbą poprawy w przypadku dwóch błędów.
