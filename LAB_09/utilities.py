@@ -47,3 +47,9 @@ def linspace(low, high, stepCount):
     step = (high - low) / (stepCount - 1)
     values = [low + step * i for i in range(stepCount)]
     return values
+
+def prettify_binary_stream(binary_stream):
+    
+    numeric_list = ['1' if bit else '0' for bit in binary_stream]
+    return ''.join(numeric_list)
+
