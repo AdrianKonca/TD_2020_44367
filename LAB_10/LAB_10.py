@@ -41,7 +41,7 @@ def drawAmplitudeSpectrum(frequencies, amplitudeSamples, title, subplot):
     plt.title(title)
     plt.ylabel('Decibels')
     plt.xlabel('Frequency')
-    plt.xscale('log')
+    #plt.xscale('log')
 
 
 def draw_amplitude_spectrum(modulation_samples, modulation_type, subplot):
@@ -199,15 +199,15 @@ def stack_images(image_names, titles, output_file_name, figure_size):
 def main_task(encoded_text, white_noise):
     Modulation = namedtuple('Modulation', ['short_name', 'long_name', 'alpha_value', 'error_frequency'])
     modulations = [
-        Modulation('ask', 'Amplitude Shift Keying', 0.937, 'high'),
-        Modulation('ask', 'Amplitude Shift Keying', 0.9383, 'medium'),
-        Modulation('ask', 'Amplitude Shift Keying', 0.9396, 'low'),
-        Modulation('psk', 'Phase Shift Keying', 0.387, 'high'),
-        Modulation('psk', 'Phase Shift Keying', 0.392, 'medium'),
-        Modulation('psk', 'Phase Shift Keying', 0.395, 'low'),
-        Modulation('fsk', 'Frequency Shift Keying', 0.096, 'high'),
-        Modulation('fsk', 'Frequency Shift Keying', 0.108, 'medium'),
-        Modulation('fsk', 'Frequency Shift Keying', 0.114, 'low'),
+        Modulation('ask', 'Amplitude Shift Keying', 0.009, 'high'),
+        Modulation('ask', 'Amplitude Shift Keying', 0.025, 'medium'),
+        Modulation('ask', 'Amplitude Shift Keying', 0.036, 'low'),
+        Modulation('psk', 'Phase Shift Keying', 0.017, 'high'),
+        Modulation('psk', 'Phase Shift Keying', 0.0285, 'medium'),
+        Modulation('psk', 'Phase Shift Keying', 0.034, 'low'),
+        Modulation('fsk', 'Frequency Shift Keying', 0.01, 'high'),
+        Modulation('fsk', 'Frequency Shift Keying', 0.029, 'medium'),
+        Modulation('fsk', 'Frequency Shift Keying', 0.0415, 'low'),
     ]
 
     for modulation in modulations:
@@ -232,9 +232,9 @@ def main_task(encoded_text, white_noise):
 
 def secondary_task(encoded_text, white_noise):
     ber_vs_alpha_parameters = [
-        ('ask', 0.932, 0.942, 150),
-        ('psk', 0.37, 0.41, 150),
-        ('fsk', 0.06, 0.125, 150),
+        ('ask', 0.0, 0.05, 150),
+        ('psk', 0.0, 0.06, 150),
+        ('fsk', 0.0, 0.065, 150),
     ]
 
     for parameters in ber_vs_alpha_parameters:
@@ -248,15 +248,15 @@ def secondary_task(encoded_text, white_noise):
         (40, 8)
     )
 
-#Type: ask  Error frequency: high    Alpha: 0.937
-#Type: ask  Error frequency: medium  Alpha: 0.9383
-#Type: ask  Error frequency: low     Alpha: 0.9396
-#Type: psk  Error frequency: high    Alpha: 0.387
-#Type: psk  Error frequency: medium  Alpha: 0.392
-#Type: psk  Error frequency: low     Alpha: 0.395
-#Type: fsk  Error frequency: high    Alpha: 0.096
-#Type: fsk  Error frequency: medium  Alpha: 0.108
-#Type: fsk  Error frequency: low     Alpha: 0.114
+#Type: ask  Error frequency: high    Alpha: 0.009
+#Type: ask  Error frequency: medium  Alpha: 0.025
+#Type: ask  Error frequency: low     Alpha: 0.036
+#Type: psk  Error frequency: high    Alpha: 0.017
+#Type: psk  Error frequency: medium  Alpha: 0.0285
+#Type: psk  Error frequency: low     Alpha: 0.034
+#Type: fsk  Error frequency: high    Alpha: 0.01
+#Type: fsk  Error frequency: medium  Alpha: 0.029
+#Type: fsk  Error frequency: low     Alpha: 0.0415
 
 if __name__ == "__main__":
     NOISE_FILENAME = 'whitenoisesound.wav'
